@@ -1,0 +1,48 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <title>Email Address Keeper</title>
+</head>
+
+<body>
+    <h1>Create New Contact</h1>
+    {{ template "newContactForm" . }}
+    <hr>
+    <h1>Email Address List</h1>
+    {{ template "contacts" . }}
+</body>
+
+</html>
+{{ end }}
+
+{{ block "newContactForm" . }}
+<form id="newContactForm">
+    <label for="name">Name: </label>
+    <input name="name" type="text" placeholder="name">
+    <br><br>
+    <label for="email">Email: </label>
+    <input name="email" type="email" placeholder="email">
+    <br><br>
+    <input type="submit">
+</form>
+{{ end }}
+
+{{ block "contacts" . }}
+<div id="contacts">
+    {{ range . }}
+    {{ template "contact" . }}
+    {{ end }}
+</div>
+{{ end }}
+
+{{ block "contact" . }}
+<p>User ID: {{ .ID }}</p>
+<p>Name: {{ .Name }}</p>
+<p>Email: {{ .Email }}</p>
+<hr>
+{{ end }}
